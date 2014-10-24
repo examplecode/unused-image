@@ -4,9 +4,9 @@ This shell script is used to check and clean unused image file in your project  
 
 ## show unused image file
 
-    ./unused-image.sh /path/of/your/project
+    ./unused-image.sh -p /path/of/your/project
 
 
 ## show and clean unused image file
 
-    ./unused-image.sh -r /path/of/your/project
+    ./unused-image.sh -r -p /path/of/your/project

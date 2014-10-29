@@ -3,7 +3,7 @@
 PROGNAME=$(basename "$0")
 PROGDIR=$(dirname "$0")
 
-usage() 
+usage()
 {
 	echo "Usage: $PROGNAME  [option]  -p path-of-project"
 	echo ""
@@ -43,17 +43,17 @@ while getopts ":rp:" optname
 done
 
 
-check_files=`find $PRJ_ROOT -name '*.xib' -o -name '*.[mh]' -o -name '*.java' -o -name '*.xml'`
+check_files=`find $PRJ_ROOT -name '*.xib' -o -name '*.storyboard' -o -name '*.[mh]' -o -name '*.java' -o -name '*.xml'`
 
 for png in `find $PRJ_ROOT -name '*.png'`
 do
     match_name=`basename $png`
-    
+
     suffix1="@2x.png"
     suffix2=".9.png"
     suffix3=".png"
     suffix4="@3x.png"
-    
+
     if [[ ${match_name/${suffix1}//} != $match_name ]]; then
       match_name=${match_name%$suffix1}
     elif [[ ${match_name/${suffix4}//} != $match_name ]]; then
@@ -62,7 +62,7 @@ do
    		match_name=${match_name%$suffix2}
     else
     	match_name=${match_name%$suffix3}
-    fi	
+    fi
 
     dir_name=`dirname $png`
     if [[ $dir_name =~ .bundle$ ]] || [[ $dir_name =~ .appiconset$ ]] || [[ $dir_name =~ .launchimage$ ]]; then
@@ -71,12 +71,12 @@ do
 
     referenced=false
 
-    for file  in `echo $check_files | sed 's/\n/ /g'`  
-  	do   
+    for file  in `echo $check_files | sed 's/\n/ /g'`
+  	do
   	    if  grep -sqh "$match_name" "$file"; then
   	        referenced=true
   	    fi
-  	done  
+  	done
 
   	if ! $referenced ; then
   		echo "The '$png' was not referenced in any file"

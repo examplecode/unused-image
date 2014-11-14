@@ -43,7 +43,7 @@ while getopts ":rp:" optname
 done
 
 
-check_files=`find $PRJ_ROOT -name '*.xib' -o -name '*.storyboard' -o -name '*.[mh]' -o -name '*.java' -o -name '*.xml'`
+check_files=`find $PRJ_ROOT -name '*.xib' -o -name '*.storyboard' -o -name '*.[mh]'  -o -name '*.pch' -o -name '*.java' -o -name '*.xml'`
 
 for png in `find $PRJ_ROOT -name '*.png'`
 do
